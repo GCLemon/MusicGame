@@ -1,12 +1,15 @@
-
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace MusicGame.Core
 {
+    [Serializable]
     public class MeasureLineList : IEnumerable<MeasureLine>
     {
+        
+        [Serializable]
         public struct MeasureLineEnumerator : IEnumerator<MeasureLine>
         {
             private readonly MeasureLineList _Master;

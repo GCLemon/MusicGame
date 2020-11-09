@@ -26,16 +26,17 @@ namespace MusicGame.Core
             return (Score)formatter.Deserialize(stream);
         }
 
-        public static void SaveToArray(byte[] serialized, Score score)
+        public static byte[] SaveToArray(Score score)
         {
-            using MemoryStream stream = new MemoryStream(serialized);
+            using MemoryStream stream = new MemoryStream();
             BinaryFormatter formatter = new BinaryFormatter();
             formatter.Serialize(stream, score);
+            return stream.GetBuffer();
         }
 
         public static void SaveToFile(string path, Score score)
         {
-            using FileStream stream = new FileStream(path, FileMode.Open, FileAccess.Write);
+            using FileStream stream = new FileStream(path, FileMode.OpenOrCreate, FileAccess.Write);
             BinaryFormatter formatter = new BinaryFormatter();
             formatter.Serialize(stream, score);
         }

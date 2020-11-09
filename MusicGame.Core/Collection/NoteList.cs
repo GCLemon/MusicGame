@@ -4,8 +4,10 @@ using System.Collections.Generic;
 
 namespace MusicGame.Core
 {
+    [Serializable]
     public class NoteList : IEnumerable<Note>
     {
+        [Serializable]
         public struct NoteEnumerator : IEnumerator<Note>
         {
             private readonly NoteList _Master;

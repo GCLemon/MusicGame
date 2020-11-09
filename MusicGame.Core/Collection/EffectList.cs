@@ -4,8 +4,10 @@ using System.Collections.Generic;
 
 namespace MusicGame.Core
 {
+    [Serializable]
     public class EffectList : IEnumerable<Effect>
     {
+        [Serializable]
         public struct EffectEnumerator : IEnumerator<Effect>
         {
             private readonly EffectList _Master;

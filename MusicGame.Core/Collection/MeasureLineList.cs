@@ -1,5 +1,7 @@
+
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace MusicGame.Core
 {
@@ -7,33 +9,81 @@ namespace MusicGame.Core
     {
         public struct MeasureLineEnumerator : IEnumerator<MeasureLine>
         {
+            private readonly MeasureLineList _Master;
+            private double _Timing;
+            private double _Measure;
+            private int _Index;
+
             public MeasureLine Current { get; private set; }
 
             object IEnumerator.Current
             {
                 get
                 {
-                    return null;
+                    return Current;
                 }
+            }
+
+            internal MeasureLineEnumerator(MeasureLineList master)
+            {
+                _Master = master;
+                _Timing = 0;
+                _Measure = 4;
+                _Index = 0;
+                Current = default;
             }
 
             public void Reset()
             {
-
+                _Index = 0;
+                Current = default;
             }
 
             public bool MoveNext()
             {
-                return false;
+                Current = new MeasureLine
+                {
+                    Score = _Master._Score,
+                    Timing = _Timing,
+                };
+
+                _Timing += _Measure;
+
+                List<MeasureChange> changes =_Master._Score.Effects
+                    .Where(x => x is MeasureChange)
+                    .Cast<MeasureChange>()
+                    .ToList();
+
+                while(_Index < changes.Count && changes[_Index].Timing <= _Timing)
+                {
+                    double bMeasure = _Measure;
+                    double aMeasure = changes[_Index].AfterMeasure;
+                    double timingDif = _Timing - changes[_Index].Timing;
+
+                    _Timing = changes[_Index].Timing;
+                    _Timing += timingDif * (aMeasure / bMeasure);
+                    _Measure = aMeasure;
+
+                    ++_Index;
+                }
+
+                return true;
             }
 
-            public void Dispose()
-            {
-
-            }
+            public void Dispose() { }
         }
 
         private Score _Score;
+
+        public MeasureLine this[int index]
+        {
+            get
+            {
+                MeasureLineEnumerator enumerator = GetEnumerator();
+                for(int i = 0; i <= index; ++i) enumerator.MoveNext();
+                return enumerator.Current;
+            }
+        }
         
         internal MeasureLineList(Score score)
         {
@@ -52,7 +102,7 @@ namespace MusicGame.Core
 
         MeasureLineEnumerator GetEnumerator()
         {
-            return new MeasureLineEnumerator();
+            return new MeasureLineEnumerator(this);
         }
     }
 }

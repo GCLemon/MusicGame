@@ -26,7 +26,7 @@ namespace MusicGame.CoreTest
                 score.Notes.Add(new SwipeNote() { Timing = 4, LaneType = LaneType.Orange });
                 score.Notes.Add(new SwipeNote() { Timing = 6, LaneType = LaneType.Purple });
 
-                serialized = Score.SaveToArray(score);
+                Score.SaveToArray(out serialized, score);
             }
             
             {

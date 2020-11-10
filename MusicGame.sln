@@ -11,8 +11,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicGame.Game", "MusicGame
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicGame.CoreTest", "MusicGame.CoreTest\MusicGame.CoreTest.csproj", "{5BE8B9D1-BAFE-4822-AB3F-E8D403DF4AD7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicGame.CoreTestConsole", "MusicGame.CoreTestConsole\MusicGame.CoreTestConsole.csproj", "{FFE3F920-E675-4AC2-B35D-4213281DB997}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -74,17 +72,5 @@ Global
 		{5BE8B9D1-BAFE-4822-AB3F-E8D403DF4AD7}.Release|x64.Build.0 = Release|Any CPU
 		{5BE8B9D1-BAFE-4822-AB3F-E8D403DF4AD7}.Release|x86.ActiveCfg = Release|Any CPU
 		{5BE8B9D1-BAFE-4822-AB3F-E8D403DF4AD7}.Release|x86.Build.0 = Release|Any CPU
-		{FFE3F920-E675-4AC2-B35D-4213281DB997}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FFE3F920-E675-4AC2-B35D-4213281DB997}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FFE3F920-E675-4AC2-B35D-4213281DB997}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{FFE3F920-E675-4AC2-B35D-4213281DB997}.Debug|x64.Build.0 = Debug|Any CPU
-		{FFE3F920-E675-4AC2-B35D-4213281DB997}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{FFE3F920-E675-4AC2-B35D-4213281DB997}.Debug|x86.Build.0 = Debug|Any CPU
-		{FFE3F920-E675-4AC2-B35D-4213281DB997}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FFE3F920-E675-4AC2-B35D-4213281DB997}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FFE3F920-E675-4AC2-B35D-4213281DB997}.Release|x64.ActiveCfg = Release|Any CPU
-		{FFE3F920-E675-4AC2-B35D-4213281DB997}.Release|x64.Build.0 = Release|Any CPU
-		{FFE3F920-E675-4AC2-B35D-4213281DB997}.Release|x86.ActiveCfg = Release|Any CPU
-		{FFE3F920-E675-4AC2-B35D-4213281DB997}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

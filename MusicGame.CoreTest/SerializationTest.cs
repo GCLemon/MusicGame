@@ -1,5 +1,5 @@
-using MusicGame.Core;
 using NUnit.Framework;
+using MusicGame.Core;
 
 namespace MusicGame.CoreTest
 {

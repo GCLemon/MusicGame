@@ -23,6 +23,9 @@ namespace MusicGame.Core
             {
                 get
                 {
+                    if (_Index == 0)
+                        throw new InvalidOperationException();
+
                     return Current;
                 }
             }

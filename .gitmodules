@@ -1,0 +1,3 @@
+[submodule "Submodule/GUIBuilder"]
+	path = Submodule/GUIBuilder
+	url = https://github.com/GCLemon/GUIBuilder.git

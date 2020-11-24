@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace MusicGame.Core
 {
@@ -18,10 +20,36 @@ namespace MusicGame.Core
 
         public double Timing { get; set; }
 
-        public double GetMSAbs()
+        public double GetTimingMSAbs()
         {
-            return 0;
+            if(_TimingMSAbs == null)
+            {
+                List<TempoChange> changes = Score.Effects
+                    .Where(x => x is TempoChange)
+                    .Cast<TempoChange>()
+                    .ToList();
+
+                _TimingMSAbs = 0;
+
+                int index = 0;
+                double prevTiming = 0;
+                double tempo = Score.InitBPM;
+
+                while(index < changes.Count && changes[index].Timing <= Timing)
+                {
+                    _TimingMSAbs += (int)((changes[index].Timing - prevTiming) * 60000 / tempo);
+
+                    prevTiming = changes[index].Timing;
+                    tempo = changes[index].AfterTempo;
+                    ++index;
+                }
+
+                _TimingMSAbs += (int)((Timing - prevTiming) * 60000 / tempo);
+            }
+
+            return _TimingMSAbs.Value;
         }
+        private int? _TimingMSAbs = null;
     }
 
     [Serializable]

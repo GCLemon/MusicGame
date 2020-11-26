@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ScoreEditor
+namespace MusicGame.Editor
 {
     class EditSpaceOnDelete
     {

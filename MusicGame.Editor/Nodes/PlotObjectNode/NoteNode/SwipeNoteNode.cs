@@ -1,7 +1,7 @@
 using System;
 using Altseed2;
 
-namespace ScoreEditor
+namespace MusicGame.Editor
 {
     class SwipeNoteNode : PlotObjectNode
     {
@@ -10,8 +10,8 @@ namespace ScoreEditor
 
         public SwipeNoteNode(PlotObjectInfo info) : base(info)
         {
-            _NoteOrange = Texture2D.Load("Resource/Note_Orange.png");
-            _NotePurple = Texture2D.Load("Resource/Note_Purple.png");
+            _NoteOrange = Texture2D.Load("Resource/Image/Note_Orange.png");
+            _NotePurple = Texture2D.Load("Resource/Image/Note_Purple.png");
             
             ObjectInfo.ObjectType = ObjectType.SwipeNote;
         }

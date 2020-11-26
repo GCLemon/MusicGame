@@ -6,11 +6,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Altseed2" Version="2.0.0-beta3" />
+    <PackageReference Include="Altseed2" Version="2.0.0-beta4" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\MusicGame.Core\MusicGame.Core.csproj" />
+    <ProjectReference Include="..\Submodule\GUIBuilder\GUIBuilder\GUIBuilder.csproj" />
   </ItemGroup>
 
 </Project>

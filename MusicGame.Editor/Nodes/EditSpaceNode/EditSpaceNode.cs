@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Altseed2;
 
-namespace ScoreEditor
+namespace MusicGame.Editor
 {
     class EditSpaceNode : Node
     {
@@ -15,7 +15,7 @@ namespace ScoreEditor
             for(int i = -1; i <= 16; ++i) AddChildNode(new BeatLineNode(i));
 
             SpriteNode noteLane = new SpriteNode();
-            noteLane.Texture = Texture2D.Load("Resource/NoteLane.png");
+            noteLane.Texture = Texture2D.Load("Resource/Image/NoteLane.png");
             noteLane.Position = new Vector2F(94, 0);
             AddChildNode(noteLane);
 
@@ -45,7 +45,7 @@ namespace ScoreEditor
             foreach(PlotObjectNode node in nodes)
                 if(!infos.Exists(x => node.ObjectInfo == x)) RemoveChildNode(node);
 
-            switch(EditorData.Instance.EditorMode)
+            switch(EditorModel.Instance.EditorMode)
             {
                 case EditorMode.Append: _OnAppendNode.Update(); break;
                 case EditorMode.Select: _OnSelectNode.Update(); break;

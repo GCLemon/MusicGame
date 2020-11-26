@@ -1,16 +1,16 @@
 ﻿using Altseed2;
 
-namespace ScoreEditor
+namespace MusicGame.Editor
 {
     class Program
     {
         static void Main()
         {
             Configuration config = new Configuration();
-            config.ToolEnabled = true;
+            config.EnabledCoreModules = CoreModules.Default | CoreModules.Tool;
 
             Engine.Initialize("~~~ NEO TONE Score Editor ~~~", 960, 720, config);
-            Engine.ClearColor = new Color()
+            Engine.ClearColor = new Color();
 ;
             Engine.AddNode(new MenuBarNode());
             Engine.AddNode(new EditPaletteNode());

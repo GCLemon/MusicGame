@@ -1,7 +1,7 @@
 using System;
 using Altseed2;
 
-namespace ScoreEditor
+namespace MusicGame.Editor
 {
     class TempoChangeNode : PlotObjectNode
     {
@@ -9,10 +9,10 @@ namespace ScoreEditor
 
         public TempoChangeNode(PlotObjectInfo info) : base(info)
         {
-            Texture = Texture2D.Load("Resource/Tempo_Change.png");
+            Texture = Texture2D.Load("Resource/Image/Tempo_Change.png");
 
             _AfterTempo = new TextNode();
-            _AfterTempo.Font = Font.LoadDynamicFont("Resource/Arial.ttf", 14);
+            _AfterTempo.Font = Font.LoadDynamicFont("Resource/Image/Arial.ttf", 14);
             _AfterTempo.Color = new Color(166, 226,  46, 255);
             _AfterTempo.Position = new Vector2F(0, -12);
             AddChildNode(_AfterTempo);

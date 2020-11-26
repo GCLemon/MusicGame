@@ -1,7 +1,7 @@
 using System;
 using Altseed2;
 
-namespace ScoreEditor
+namespace MusicGame.Editor
 {
     class SlideNoteNode : PlotObjectNode
     {
@@ -16,11 +16,11 @@ namespace ScoreEditor
 
         public SlideNoteNode(PlotObjectInfo info) : base(info)
         {
-            _NoteOrange = Texture2D.Load("Resource/Note_Orange.png");
-            _NotePurple = Texture2D.Load("Resource/Note_Purple.png");
+            _NoteOrange = Texture2D.Load("Resource/Image/Note_Orange.png");
+            _NotePurple = Texture2D.Load("Resource/Image/Note_Purple.png");
 
-            _EndOrange = Texture2D.Load("Resource/End_Orange.png");
-            _EndPurple = Texture2D.Load("Resource/End_Purple.png");
+            _EndOrange = Texture2D.Load("Resource/Image/End_Orange.png");
+            _EndPurple = Texture2D.Load("Resource/Image/End_Purple.png");
 
             ObjectInfo.ObjectType = ObjectType.SlideNote;
 

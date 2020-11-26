@@ -1,7 +1,7 @@
 using System;
 using Altseed2;
 
-namespace ScoreEditor
+namespace MusicGame.Editor
 {
     class HoldNoteNode : PlotObjectNode
     {
@@ -20,15 +20,15 @@ namespace ScoreEditor
 
         public HoldNoteNode(PlotObjectInfo info) : base(info)
         {
-            _NoteRed = Texture2D.Load("Resource/Note_Red.png");
-            _NoteYellow = Texture2D.Load("Resource/Note_Yellow.png");
-            _NoteGreen = Texture2D.Load("Resource/Note_Green.png");
-            _NoteBlue = Texture2D.Load("Resource/Note_Blue.png");
+            _NoteRed = Texture2D.Load("Resource/Image/Note_Red.png");
+            _NoteYellow = Texture2D.Load("Resource/Image/Note_Yellow.png");
+            _NoteGreen = Texture2D.Load("Resource/Image/Note_Green.png");
+            _NoteBlue = Texture2D.Load("Resource/Image/Note_Blue.png");
 
-            _EndRed = Texture2D.Load("Resource/End_Red.png");
-            _EndYellow = Texture2D.Load("Resource/End_Yellow.png");
-            _EndGreen = Texture2D.Load("Resource/End_Green.png");
-            _EndBlue = Texture2D.Load("Resource/End_Blue.png");
+            _EndRed = Texture2D.Load("Resource/Image/End_Red.png");
+            _EndYellow = Texture2D.Load("Resource/Image/End_Yellow.png");
+            _EndGreen = Texture2D.Load("Resource/Image/End_Green.png");
+            _EndBlue = Texture2D.Load("Resource/Image/End_Blue.png");
 
             ObjectInfo.ObjectType = ObjectType.HoldNote;
 

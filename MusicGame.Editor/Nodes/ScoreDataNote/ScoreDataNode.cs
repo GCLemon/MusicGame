@@ -1,111 +1,36 @@
 using Altseed2;
 
-namespace ScoreEditor
+namespace MusicGame.Editor
 {
-    class ScoreDataNode : Node
+    class ScoreDataNode : GUIManagerNode
     {
-        private GUIWindow _ScoreDataWindow;
-
-        private GUIInputText _SongTitleBox;
-        private GUIInputText _SubtitleBox;
-        private GUIInputText _SoundPathBox;
-        private GUIInputText _JacketPathBox;
-
-        private GUIButton _SoundPathButton;
-        private GUIButton _JacketPathButton;
-
-        private GUICombo<Difficulty> _DifficultyCombo;
-        private GUIInputInt _LevelBox;
-
-        private GUIInputFloat _InitBPMBox;
-        private GUIInputFloat _OfsetBox;
-
-        private GUIInputFloat _DemoStartBox;
-        private GUIInputFloat _DemoEndBox;
-
+        GUIWindow _Window;
+        
         public ScoreDataNode()
         {
-            _ScoreDataWindow = new GUIWindow();
-
-            _ScoreDataWindow.Label = "Metadata";
-
-            _ScoreDataWindow.WindowFlags |= ToolWindowFlags.NoMove;
-            _ScoreDataWindow.WindowFlags |= ToolWindowFlags.NoResize;
-            _ScoreDataWindow.WindowFlags |= ToolWindowFlags.NoTitleBar;
-
-            _ScoreDataWindow.GUIItems.Add(new GUIText { Label = "Song Title : " });
-            _SongTitleBox = new GUIInputText { Label = "###Title", MaxLength = 256, SameLine = true };
-            _ScoreDataWindow.GUIItems.Add(_SongTitleBox);
-
-            _ScoreDataWindow.GUIItems.Add(new GUIText { Label = "Subtitle :   " });
-            _SubtitleBox = new GUIInputText { Label = "###Subtitle", MaxLength = 256, SameLine = true };
-            _ScoreDataWindow.GUIItems.Add(_SubtitleBox);
-
-            _ScoreDataWindow.GUIItems.Add(new GUIText { Label = "Sound Path : " });
-            _SoundPathBox = new GUIInputText { Label = "###SoundPath", MaxLength = 256, SameLine = true };
-            _ScoreDataWindow.GUIItems.Add(_SoundPathBox);
-            _SoundPathButton = new GUIButton { Label = "Browse###Sound", SameLine = true };
-            _ScoreDataWindow.GUIItems.Add(_SoundPathButton);
-
-            _ScoreDataWindow.GUIItems.Add(new GUIText { Label = "Jacket Path :" });
-            _JacketPathBox = new GUIInputText { Label = "###JacketPath", MaxLength = 256, SameLine = true };
-            _ScoreDataWindow.GUIItems.Add(_JacketPathBox);
-            _JacketPathButton = new GUIButton { Label = "Browse###Jacket", SameLine = true };
-            _ScoreDataWindow.GUIItems.Add(_JacketPathButton);
-
-            _ScoreDataWindow.GUIItems.Add(new GUIText { Label = "Difficulty : " });
-            _DifficultyCombo = new GUICombo<Difficulty> { Label = "###Difficulty", SameLine = true };
-            _ScoreDataWindow.GUIItems.Add(_DifficultyCombo);
-
-            _ScoreDataWindow.GUIItems.Add(new GUIText { Label = "Level :      " });
-            _LevelBox = new GUIInputInt { Label = "###Level", SameLine = true };
-            _ScoreDataWindow.GUIItems.Add(_LevelBox);
-
-            _ScoreDataWindow.GUIItems.Add(new GUIText { Label = "Initial BPM :" });
-            _InitBPMBox = new GUIInputFloat { Label = "###InitialBPM", SameLine = true };
-            _ScoreDataWindow.GUIItems.Add(_InitBPMBox);
-
-            _ScoreDataWindow.GUIItems.Add(new GUIText { Label = "Ofset :      " });
-            _OfsetBox = new GUIInputFloat { Label = "###Ofset", SameLine = true };
-            _ScoreDataWindow.GUIItems.Add(_OfsetBox);
-
-            _ScoreDataWindow.GUIItems.Add(new GUIText { Label = "Demo Start : " });
-            _DemoStartBox = new GUIInputFloat { Label = "###DemoStart", SameLine = true };
-            _ScoreDataWindow.GUIItems.Add(_DemoStartBox);
-
-            _ScoreDataWindow.GUIItems.Add(new GUIText { Label = "Demo End :   " });
-            _DemoEndBox = new GUIInputFloat { Label = "###DemoEnd", SameLine = true };
-            _ScoreDataWindow.GUIItems.Add(_DemoEndBox);
+            AddGUIItem(GUIBuilder.Instance.CreateFromXMLFile("Resource/Widget/ScoreData.xml"));
+            _Window = GetItemWithName<GUIWindow>("Score Data");
         }
 
         protected override void OnUpdate()
         {
-            _SongTitleBox.InputValue = ScoreData.Instance.Title;
-            _SubtitleBox.InputValue = ScoreData.Instance.Subtitle;
-            _SoundPathBox.InputValue = ScoreData.Instance.SoundPath;
-            _JacketPathBox.InputValue = ScoreData.Instance.JacketPath;
-            _DifficultyCombo.CurrentItem = ScoreData.Instance.Difficulty;
-            _LevelBox.InputValue = ScoreData.Instance.Level;
-            _InitBPMBox.InputValue = (float)ScoreData.Instance.InitialBPM;
-            _OfsetBox.InputValue = (float)ScoreData.Instance.Ofset;
-            _DemoStartBox.InputValue = (float)ScoreData.Instance.DemoStart;
-            _DemoEndBox.InputValue = (float)ScoreData.Instance.DemoEnd;
+            base.OnUpdate();
 
-            _ScoreDataWindow.Update();
+            Core.Score score = EditorModel.Instance.Score;
 
-            if(_SoundPathButton.IsPressed) _SoundPathBox.InputValue = Engine.Tool.OpenDialog("wav,ogg", "./");
-            if(_JacketPathButton.IsPressed) _JacketPathBox.InputValue = Engine.Tool.OpenDialog("png", "./");
+            score.Title = _Window.GetItemWithAttr<GUIInputText>("Title").InputValue;
+            score.Subtitle = _Window.GetItemWithAttr<GUIInputText>("Subtitle").InputValue;
+            score.SoundPath = _Window.GetItemWithAttr<GUIInputText>("SoundPath").InputValue;
+            score.JacketPath = _Window.GetItemWithAttr<GUIInputText>("JacketPath").InputValue;
 
-            ScoreData.Instance.Title = _SongTitleBox.InputValue;
-            ScoreData.Instance.Subtitle = _SubtitleBox.InputValue;
-            ScoreData.Instance.SoundPath = _SoundPathBox.InputValue;
-            ScoreData.Instance.JacketPath = _JacketPathBox.InputValue;
-            ScoreData.Instance.Difficulty = _DifficultyCombo.CurrentItem;
-            ScoreData.Instance.Level = _LevelBox.InputValue;
-            ScoreData.Instance.InitialBPM = _InitBPMBox.InputValue;
-            ScoreData.Instance.Ofset = _OfsetBox.InputValue;
-            ScoreData.Instance.DemoStart = _DemoStartBox.InputValue;
-            ScoreData.Instance.DemoEnd = _DemoEndBox.InputValue;
+            score.Difficulty = (Core.Difficulty)_Window.GetItemWithAttr<GUICombo>("Difficulty").CurrentItem;
+            score.Level = _Window.GetItemWithAttr<GUIInputInt>("Level").Values[0];
+
+            score.InitBPM = _Window.GetItemWithAttr<GUIInputFloat>("InitialBPM").Values[0];
+            score.Offset = _Window.GetItemWithAttr<GUIInputFloat>("Offset").Values[0];
+
+            score.DemoStart = _Window.GetItemWithAttr<GUIInputInt>("DemoStart").Values[0];
+            score.DemoEnd = _Window.GetItemWithAttr<GUIInputInt>("DemoEnd").Values[0];
         }
     }
 }

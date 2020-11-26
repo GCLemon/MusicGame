@@ -42,8 +42,8 @@ namespace MusicGame.Core
         }
 
         public string Title { get; set; }
-        public string Subitle { get; set; }
-        public string SouncPath { get; set; }
+        public string Subtitle { get; set; }
+        public string SoundPath { get; set; }
         public string JacketPath { get; set; }
 
         public Difficulty Difficulty { get; set; }

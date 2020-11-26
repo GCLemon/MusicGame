@@ -1,7 +1,7 @@
 using System;
 using Altseed2;
 
-namespace ScoreEditor
+namespace MusicGame.Editor
 {
     class TapNoteNode : PlotObjectNode
     {
@@ -12,10 +12,10 @@ namespace ScoreEditor
 
         public TapNoteNode(PlotObjectInfo info) : base(info)
         {
-            _NoteRed = Texture2D.Load("Resource/Note_Red.png");
-            _NoteYellow = Texture2D.Load("Resource/Note_Yellow.png");
-            _NoteGreen = Texture2D.Load("Resource/Note_Green.png");
-            _NoteBlue = Texture2D.Load("Resource/Note_Blue.png");
+            _NoteRed = Texture2D.Load("Resource/Image/Note_Red.png");
+            _NoteYellow = Texture2D.Load("Resource/Image/Note_Yellow.png");
+            _NoteGreen = Texture2D.Load("Resource/Image/Note_Green.png");
+            _NoteBlue = Texture2D.Load("Resource/Image/Note_Blue.png");
 
             ObjectInfo.ObjectType = ObjectType.TapNote;
         }

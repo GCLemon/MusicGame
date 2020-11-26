@@ -1,7 +1,7 @@
 using System;
 using Altseed2;
 
-namespace ScoreEditor
+namespace MusicGame.Editor
 {
     class EditSpaceOnAppend
     {
@@ -26,14 +26,14 @@ namespace ScoreEditor
                         _PlottingObject.ObjectState = ObjectState.Moving;
                         ScoreData.Instance.Save();
                         ScoreData.Instance.PlotedObjects.Add(_PlottingObject);
-                        switch(EditorData.Instance.AppendMode)
+                        switch(EditorModel.Instance.AppendMode)
                         {
                             case AppendMode.TapNote:
                                 _PlottingObject.ObjectType = ObjectType.TapNote;
                                 break;
                             case AppendMode.HoldNote:
                                 _PlottingObject.ObjectType = ObjectType.HoldNote;
-                                _PlottingObject.Length = EditorData.Instance.DefaultLength;
+                                _PlottingObject.Length = EditorModel.Instance.DefaultLength;
                                 break;
                             case AppendMode.SwipeNoteRight:
                                 _PlottingObject.ObjectType = ObjectType.SwipeNote;
@@ -42,7 +42,7 @@ namespace ScoreEditor
                             case AppendMode.SlideNoteRight:
                                 _PlottingObject.ObjectType = ObjectType.SlideNote;
                                 _PlottingObject.LaneType = LaneType.Orange;
-                                _PlottingObject.Length = EditorData.Instance.DefaultLength;
+                                _PlottingObject.Length = EditorModel.Instance.DefaultLength;
                                 break;
                             case AppendMode.SwipeNoteLeft:
                                 _PlottingObject.ObjectType = ObjectType.SwipeNote;
@@ -51,19 +51,19 @@ namespace ScoreEditor
                             case AppendMode.SlideNoteLeft:
                                 _PlottingObject.ObjectType = ObjectType.SlideNote;
                                 _PlottingObject.LaneType = LaneType.Purple;
-                                _PlottingObject.Length = EditorData.Instance.DefaultLength;
+                                _PlottingObject.Length = EditorModel.Instance.DefaultLength;
                                 break;
                             case AppendMode.SpeedChange:
                                 _PlottingObject.ObjectType = ObjectType.SpeedChange;
-                                _PlottingObject.AfterSpeed = EditorData.Instance.DefaultNextSpeed;
+                                _PlottingObject.AfterSpeed = EditorModel.Instance.DefaultNextSpeed;
                                 break;
                             case AppendMode.TempoChange:
                                 _PlottingObject.ObjectType = ObjectType.TempoChange;
-                                _PlottingObject.AfterTempo = EditorData.Instance.DefaultNextTempo;
+                                _PlottingObject.AfterTempo = EditorModel.Instance.DefaultNextTempo;
                                 break;
                             case AppendMode.MeasureChange:
                                 _PlottingObject.ObjectType = ObjectType.MeasureChange;
-                                _PlottingObject.AfterMeasure = EditorData.Instance.DefaultNextMeasure;
+                                _PlottingObject.AfterMeasure = EditorModel.Instance.DefaultNextMeasure;
                                 break;
                         }
                     }
@@ -75,7 +75,7 @@ namespace ScoreEditor
                     {
                         Vector2F dragPos = InputManager.Instance.GetMousePosition();
 
-                        float quantize = EditorData.Instance.Quantize * 0.25f;
+                        float quantize = EditorModel.Instance.Quantize * 0.25f;
                         float posY = dragPos.Y;
                         float scroll = InputManager.Instance.GetTotalScroll() * 5;
                         

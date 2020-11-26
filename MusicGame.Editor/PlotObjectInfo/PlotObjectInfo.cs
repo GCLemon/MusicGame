@@ -1,6 +1,6 @@
 using System;
 
-namespace ScoreEditor
+namespace MusicGame.Editor
 {
     [Serializable]
     enum ObjectState

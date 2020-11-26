@@ -1,21 +1,20 @@
 using Altseed2;
 
-namespace ScoreEditor
+namespace MusicGame.Editor
 {
-    class MenuBarNode : Node
+    class MenuBarNode : GUIManagerNode
     {
-        GUIMainMenuBar _MainMenuBar;
-
+        GUIMainMenuBar _MenuBar;
+        
         public MenuBarNode()
         {
-            _MainMenuBar = new GUIMainMenuBar();
-            _MainMenuBar.GUIItems.Add(new GUIFileMenu());
-            _MainMenuBar.GUIItems.Add(new GUIEditMenu());
+            AddGUIItem(GUIBuilder.Instance.CreateFromXMLFile("Resource/Widget/MainMenuBar.xml"));
+            _MenuBar = GetItemWithName<GUIMainMenuBar>("MainMenu");
         }
 
         protected override void OnUpdate()
         {
-            _MainMenuBar.Update();
+            base.OnUpdate();
         }
     }
 }

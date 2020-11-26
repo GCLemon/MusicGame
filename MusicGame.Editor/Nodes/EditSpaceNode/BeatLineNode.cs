@@ -1,6 +1,6 @@
 using Altseed2;
 
-namespace ScoreEditor
+namespace MusicGame.Editor
 {
     class BeatLineNode : LineNode
     {
@@ -16,7 +16,7 @@ namespace ScoreEditor
             Thickness = 2;
 
             _MeasureIDText = new TextNode();
-            _MeasureIDText.Font = Font.LoadDynamicFont("Resource/Arial.ttf", 20);
+            _MeasureIDText.Font = Font.LoadDynamicFont("Resource/Font/Arial.ttf", 20);
             _MeasureIDText.Color = new Color(255, 255, 255);
             _MeasureIDText.Text = "";
             _MeasureIDText.Position = new Vector2F(-20, 0);

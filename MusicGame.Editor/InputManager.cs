@@ -1,6 +1,6 @@
 using Altseed2;
 
-namespace ScoreEditor
+namespace MusicGame.Editor
 {
     class InputManager
     {

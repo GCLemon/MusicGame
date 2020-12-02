@@ -1,9 +1,8 @@
-using System;
 using Altseed2;
 
 namespace MusicGame.Editor
 {
-    class HoldNoteNode : PlotObjectNode
+    class HoldNoteNode : NoteNode
     {
         private Texture2D _NoteRed;
         private Texture2D _NoteYellow;
@@ -18,7 +17,7 @@ namespace MusicGame.Editor
         private RectangleNode _HoldObject;
         private SpriteNode _EndObject;
 
-        public HoldNoteNode(PlotObjectInfo info) : base(info)
+        public HoldNoteNode(Core.HoldNote note) : base(note)
         {
             _NoteRed = Texture2D.Load("Resource/Image/Note_Red.png");
             _NoteYellow = Texture2D.Load("Resource/Image/Note_Yellow.png");
@@ -29,8 +28,6 @@ namespace MusicGame.Editor
             _EndYellow = Texture2D.Load("Resource/Image/End_Yellow.png");
             _EndGreen = Texture2D.Load("Resource/Image/End_Green.png");
             _EndBlue = Texture2D.Load("Resource/Image/End_Blue.png");
-
-            ObjectInfo.ObjectType = ObjectType.HoldNote;
 
             _HoldObject = new RectangleNode();
             _EndObject = new SpriteNode();
@@ -44,27 +41,27 @@ namespace MusicGame.Editor
             base.OnUpdate();
 
             Vector2F position = new Vector2F();
-            switch(ObjectInfo.LaneType)
+            switch(Note.LaneType)
             {
-                case LaneType.Red:
+                case Core.LaneType.Red:
                     position.X = 288;
                     Texture = _NoteRed;
                     _EndObject.Texture = _EndRed;
                     _HoldObject.Color = new Color(249, 38, 114, 127);
                     break;
-                case LaneType.Yellow:
+                case Core.LaneType.Yellow:
                     position.X = 226;
                     Texture = _NoteYellow;
                     _EndObject.Texture = _EndYellow;
                     _HoldObject.Color = new Color(230, 219, 116, 127);
                     break;
-                case LaneType.Green:
+                case Core.LaneType.Green:
                     position.X = 164;
                     Texture = _NoteGreen;
                     _EndObject.Texture = _EndGreen;
                     _HoldObject.Color = new Color(116, 226, 46, 127);
                     break;
-                case LaneType.Blue:
+                case Core.LaneType.Blue:
                     position.X = 102;
                     Texture = _NoteBlue;
                     _EndObject.Texture = _EndBlue;
@@ -73,11 +70,11 @@ namespace MusicGame.Editor
             }
 
             float scroll = InputManager.Instance.GetTotalScroll() * 5;
-            position.Y = 634 - 40 * (float)ObjectInfo.Timing + scroll;
+            position.Y = 634 - 40 * (float)Note.Timing + scroll;
 
             Position = position;
 
-            float length = (float)(ObjectInfo.Length);
+            float length = (float)(((Core.SlideNote)Note).Length);
             _EndObject.Position = new Vector2F(0, -40 * length);
 
             _HoldObject.RectangleSize = new Vector2F(58, 40 * length - 4);

@@ -2,18 +2,13 @@ using Altseed2;
 
 namespace MusicGame.Editor
 {
-    class PlotObjectNode : SpriteNode
+    abstract class PlotObjectNode : SpriteNode
     {
-        public PlotObjectInfo ObjectInfo { get; }
-
-        public PlotObjectNode(PlotObjectInfo info)
-        {
-            ObjectInfo = info;
-        }
+        public ObjectState State { get; set; }
 
         protected override void OnUpdate()
         {
-            switch(ObjectInfo.ObjectState)
+            switch(State)
             {
                 case ObjectState.Unselected:
                     Color = new Color(255, 255, 255);
@@ -39,6 +34,26 @@ namespace MusicGame.Editor
         {
             bool mousePush = InputManager.Instance.GetMousePush(MouseButton.ButtonLeft);
             return GetIsHovered() && mousePush;
+        }
+    }
+    
+    abstract class NoteNode : PlotObjectNode
+    {
+        public Core.Note Note { get; }
+
+        public NoteNode(Core.Note note)
+        {
+            Note = note;
+        }
+    }
+
+    abstract class EffectNode : PlotObjectNode
+    {
+        public Core.Effect Effect { get; }
+
+        public EffectNode(Core.Effect effect)
+        {
+            Effect = effect;
         }
     }
 }

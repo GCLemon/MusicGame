@@ -20,10 +20,7 @@ namespace MusicGame.Editor
             _MeasureIDText.Color = new Color(255, 255, 255);
             _MeasureIDText.Text = "";
             _MeasureIDText.Position = new Vector2F(-20, 0);
-        }
-
-        protected override void OnAdded()
-        {
+            
             AddChildNode(_MeasureIDText);
         }
 

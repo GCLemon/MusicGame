@@ -1,31 +1,28 @@
-using System;
 using Altseed2;
 
 namespace MusicGame.Editor
 {
-    class SwipeNoteNode : PlotObjectNode
+    class SwipeNoteNode : NoteNode
     {
         private Texture2D _NoteOrange;
         private Texture2D _NotePurple;
 
-        public SwipeNoteNode(PlotObjectInfo info) : base(info)
+        public SwipeNoteNode(Core.SwipeNote note) : base(note)
         {
             _NoteOrange = Texture2D.Load("Resource/Image/Note_Orange.png");
             _NotePurple = Texture2D.Load("Resource/Image/Note_Purple.png");
-            
-            ObjectInfo.ObjectType = ObjectType.SwipeNote;
         }
 
         protected override void OnUpdate()
         {
             base.OnUpdate();
             
-            switch(ObjectInfo.LaneType)
+            switch(Note.LaneType)
             {
-                case LaneType.Orange:
+                case Core.LaneType.Orange:
                     Texture = _NoteOrange;
                     break;
-                case LaneType.Purple:
+                case Core.LaneType.Purple:
                     Texture = _NotePurple;
                     break;
             }
@@ -34,7 +31,7 @@ namespace MusicGame.Editor
             position.X = 95;
             
             float scroll = InputManager.Instance.GetTotalScroll() * 5;
-            position.Y = 634 - 40 * (float)ObjectInfo.Timing + scroll;
+            position.Y = 634 - 40 * (float)Note.Timing + scroll;
 
             Position = position;
         }

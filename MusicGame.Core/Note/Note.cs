@@ -170,7 +170,7 @@ namespace MusicGame.Core
     [Serializable]
     public class TapNote : Note
     {
-        public override NoteType NoteType => NoteType.HoldNote;
+        public override NoteType NoteType => NoteType.TapNote;
     }
 
     [Serializable]

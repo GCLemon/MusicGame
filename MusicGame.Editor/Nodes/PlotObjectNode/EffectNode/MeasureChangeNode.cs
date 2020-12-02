@@ -3,11 +3,11 @@ using Altseed2;
 
 namespace MusicGame.Editor
 {
-    class MeasureChangeNode : PlotObjectNode
+    class MeasureChangeNode : EffectNode
     {
         private TextNode _AfterMeasure;
 
-        public MeasureChangeNode(PlotObjectInfo info) : base(info)
+        public MeasureChangeNode(Core.MeasureChange change) : base(change)
         {
             Texture = Texture2D.Load("Resource/Image/Measure_Change.png");
 
@@ -16,8 +16,6 @@ namespace MusicGame.Editor
             _AfterMeasure.Color = new Color(253, 151,  31, 255);
             _AfterMeasure.Position = new Vector2F(0, -12);
             AddChildNode(_AfterMeasure);
-
-            ObjectInfo.ObjectType = ObjectType.MeasureChange;
         }
 
         protected override void OnUpdate()
@@ -28,11 +26,11 @@ namespace MusicGame.Editor
             position.X = 102;
 
             float scroll = InputManager.Instance.GetTotalScroll() * 5;
-            position.Y = 634 - 40 * (float)ObjectInfo.Timing + scroll;
+            position.Y = 634 - 40 * (float)((Core.MeasureChange)Effect).Timing + scroll;
 
             Position = position;
             
-            _AfterMeasure.Text = "Next Measure : " + ObjectInfo.AfterMeasure + " beats.";
+            _AfterMeasure.Text = "Next Measure : " + ((Core.MeasureChange)Effect).AfterMeasure + " beats.";
         }
     }
 }

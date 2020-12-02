@@ -1,23 +1,20 @@
-using System;
 using Altseed2;
 
 namespace MusicGame.Editor
 {
-    class TapNoteNode : PlotObjectNode
+    class TapNoteNode : NoteNode
     {
         private Texture2D _NoteRed;
         private Texture2D _NoteYellow;
         private Texture2D _NoteGreen;
         private Texture2D _NoteBlue;
 
-        public TapNoteNode(PlotObjectInfo info) : base(info)
+        public TapNoteNode(Core.TapNote note) : base(note)
         {
             _NoteRed = Texture2D.Load("Resource/Image/Note_Red.png");
             _NoteYellow = Texture2D.Load("Resource/Image/Note_Yellow.png");
             _NoteGreen = Texture2D.Load("Resource/Image/Note_Green.png");
             _NoteBlue = Texture2D.Load("Resource/Image/Note_Blue.png");
-
-            ObjectInfo.ObjectType = ObjectType.TapNote;
         }
 
         protected override void OnUpdate()
@@ -25,28 +22,28 @@ namespace MusicGame.Editor
             base.OnUpdate();
             
             Vector2F position = new Vector2F();
-            switch(ObjectInfo.LaneType)
+            switch(Note.LaneType)
             {
-                case LaneType.Red:
+                case Core.LaneType.Red:
                     position.X = 288;
                     Texture = _NoteRed;
                     break;
-                case LaneType.Yellow:
+                case Core.LaneType.Yellow:
                     position.X = 226;
                     Texture = _NoteYellow;
                     break;
-                case LaneType.Green:
+                case Core.LaneType.Green:
                     position.X = 164;
                     Texture = _NoteGreen;
                     break;
-                case LaneType.Blue:
+                case Core.LaneType.Blue:
                     position.X = 102;
                     Texture = _NoteBlue;
                     break;
             }
 
             float scroll = InputManager.Instance.GetTotalScroll() * 5;
-            position.Y = 634 - 40 * (float)ObjectInfo.Timing + scroll;
+            position.Y = 634 - 40 * (float)Note.Timing + scroll;
 
             Position = position;
         }

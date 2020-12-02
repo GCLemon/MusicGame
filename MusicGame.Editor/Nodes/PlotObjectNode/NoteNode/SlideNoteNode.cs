@@ -1,9 +1,8 @@
-using System;
 using Altseed2;
 
 namespace MusicGame.Editor
 {
-    class SlideNoteNode : PlotObjectNode
+    class SlideNoteNode : NoteNode
     {
         private Texture2D _NoteOrange;
         private Texture2D _NotePurple;
@@ -14,15 +13,13 @@ namespace MusicGame.Editor
         private RectangleNode _HoldObject;
         private SpriteNode _EndObject;
 
-        public SlideNoteNode(PlotObjectInfo info) : base(info)
+        public SlideNoteNode(Core.SlideNote note) : base(note)
         {
             _NoteOrange = Texture2D.Load("Resource/Image/Note_Orange.png");
             _NotePurple = Texture2D.Load("Resource/Image/Note_Purple.png");
 
             _EndOrange = Texture2D.Load("Resource/Image/End_Orange.png");
             _EndPurple = Texture2D.Load("Resource/Image/End_Purple.png");
-
-            ObjectInfo.ObjectType = ObjectType.SlideNote;
 
             _HoldObject = new RectangleNode();
             _EndObject = new SpriteNode();
@@ -35,14 +32,14 @@ namespace MusicGame.Editor
         {
             base.OnUpdate();
             
-            switch(ObjectInfo.LaneType)
+            switch(Note.LaneType)
             {
-                case LaneType.Orange:
+                case Core.LaneType.Orange:
                     Texture = _NoteOrange;
                     _EndObject.Texture = _EndOrange;
                     _HoldObject.Color = new Color(253, 151, 31, 127);
                     break;
-                case LaneType.Purple:
+                case Core.LaneType.Purple:
                     Texture = _NotePurple;
                     _EndObject.Texture = _EndPurple;
                     _HoldObject.Color = new Color(174, 129, 255, 127);
@@ -52,11 +49,11 @@ namespace MusicGame.Editor
             position.X = 95;
             
             float scroll = InputManager.Instance.GetTotalScroll() * 5;
-            position.Y = 634 - 40 * (float)ObjectInfo.Timing + scroll;
+            position.Y = 634 - 40 * (float)Note.Timing + scroll;
 
             Position = position;
 
-            float length = (float)(ObjectInfo.Length);
+            float length = (float)(((Core.SlideNote)Note).Length);
             _EndObject.Position = new Vector2F(0, -40 * length);
 
             _HoldObject.RectangleSize = new Vector2F(246, 40 * length - 4);

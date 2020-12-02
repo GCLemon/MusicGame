@@ -1,13 +1,12 @@
-using System;
 using Altseed2;
 
 namespace MusicGame.Editor
 {
-    class SpeedChangeNode : PlotObjectNode
+    class SpeedChangeNode : EffectNode
     {
         private TextNode _AfterSpeed;
 
-        public SpeedChangeNode(PlotObjectInfo info) : base(info)
+        public SpeedChangeNode(Core.SpeedChange change) : base(change)
         {
             Texture = Texture2D.Load("Resource/Image/Speed_Change.png");
 
@@ -16,8 +15,6 @@ namespace MusicGame.Editor
             _AfterSpeed.Color = new Color(102, 217, 239, 255);
             _AfterSpeed.Position = new Vector2F(0, -12);
             AddChildNode(_AfterSpeed);
-
-            ObjectInfo.ObjectType = ObjectType.SpeedChange;
         }
 
         protected override void OnUpdate()
@@ -28,11 +25,11 @@ namespace MusicGame.Editor
             position.X = 102;
 
             float scroll = InputManager.Instance.GetTotalScroll() * 5;
-            position.Y = 634 - 40 * (float)ObjectInfo.Timing + scroll;
+            position.Y = 634 - 40 * (float)((Core.SpeedChange)Effect).Timing + scroll;
 
             Position = position;
             
-            _AfterSpeed.Text = "Next Speed : ×" + ObjectInfo.AfterSpeed;
+            _AfterSpeed.Text = "Next Speed : ×" + ((Core.SpeedChange)Effect).AfterSpeed;
         }
     }
 }

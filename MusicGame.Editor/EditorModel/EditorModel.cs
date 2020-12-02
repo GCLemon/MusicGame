@@ -148,19 +148,23 @@ namespace MusicGame.Editor
 
         public void Undo()
         {
-            if(_UndoQueue.TryPop(out byte[] serialized))
+            if(_UndoQueue.TryPop(out byte[] undo))
             {
-                Score = Core.Score.CreateFromArray(serialized);
-                _RedoQueue.Push(serialized);
+                Core.Score.SaveToArray(out byte[] redo, Score);
+                _RedoQueue.Push(redo);
+
+                Score = Core.Score.CreateFromArray(undo);
             }
         }
 
         public void Redo()
         {
-            if(_RedoQueue.TryPop(out byte[] serialized))
+            if(_RedoQueue.TryPop(out byte[] redo))
             {
-                Score = Core.Score.CreateFromArray(serialized);
-                _UndoQueue.Push(serialized);
+                Core.Score.SaveToArray(out byte[] undo, Score);
+                _UndoQueue.Push(undo);
+
+                Score = Core.Score.CreateFromArray(redo);
             }
         }
     }

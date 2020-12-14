@@ -59,26 +59,26 @@ namespace MusicGame.Editor
         }
         private float _DefaultLength;
 
-        public float DefaultNextSpeed
+        public float DefaultAfterSpeed
         {
-            get { return _DefaultNextSpeed; }
-            set { _DefaultNextSpeed = value; }
+            get { return _DefaultAfterSpeed; }
+            set { _DefaultAfterSpeed = value; }
         }
-        private float _DefaultNextSpeed;
+        private float _DefaultAfterSpeed;
 
-        public float DefaultNextTempo
+        public float DefaultAfterTempo
         {
-            get { return _DefaultNextTempo; }
-            set { _DefaultNextTempo = Math.Max(value, 1); }
+            get { return _DefaultAfterTempo; }
+            set { _DefaultAfterTempo = Math.Max(value, 1); }
         }
-        private float _DefaultNextTempo;
+        private float _DefaultAfterTempo;
 
-        public int DefaultNextMeasure
+        public int DefaultAfterMeasure
         {
-            get { return _DefaultNextMeasure; }
-            set { _DefaultNextMeasure = Math.Max(value, 1); }
+            get { return _DefaultAfterMeasure; }
+            set { _DefaultAfterMeasure = Math.Max(value, 1); }
         }
-        private int _DefaultNextMeasure;
+        private int _DefaultAfterMeasure;
 
         private EditorModel()
         {
@@ -101,9 +101,9 @@ namespace MusicGame.Editor
             AppendMode = AppendMode.TapNote;
 
             DefaultLength = 1;
-            DefaultNextSpeed = 1;
-            DefaultNextTempo = 120;
-            DefaultNextMeasure = 4;
+            DefaultAfterSpeed = 1;
+            DefaultAfterTempo = 120;
+            DefaultAfterMeasure = 4;
         }
 
         public void New()

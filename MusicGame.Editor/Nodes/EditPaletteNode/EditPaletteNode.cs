@@ -36,6 +36,48 @@ namespace MusicGame.Editor
         private void OnAppend()
         {
             SetAppendGUI(true);
+
+            if(_Window.GetItemWithAttr<GUIImageButton>("Tap_Button").IsClicked)
+                EditorModel.Instance.AppendMode = AppendMode.TapNote;
+
+            if(_Window.GetItemWithAttr<GUIImageButton>("Hold_Button").IsClicked)
+                EditorModel.Instance.AppendMode = AppendMode.HoldNote;
+
+            if(_Window.GetItemWithAttr<GUIImageButton>("Swipe_Right_Button").IsClicked)
+                EditorModel.Instance.AppendMode = AppendMode.SwipeNoteRight;
+
+            if(_Window.GetItemWithAttr<GUIImageButton>("Slide_Right_Button").IsClicked)
+                EditorModel.Instance.AppendMode = AppendMode.SlideNoteRight;
+
+            if(_Window.GetItemWithAttr<GUIImageButton>("Swipe_Left_Button").IsClicked)
+                EditorModel.Instance.AppendMode = AppendMode.SwipeNoteLeft;
+
+            if(_Window.GetItemWithAttr<GUIImageButton>("Slide_Left_Button").IsClicked)
+                EditorModel.Instance.AppendMode = AppendMode.SlideNoteLeft;
+
+            if(_Window.GetItemWithAttr<GUIImageButton>("SpeedChange_Button").IsClicked)
+                EditorModel.Instance.AppendMode = AppendMode.SpeedChange;
+
+            if(_Window.GetItemWithAttr<GUIImageButton>("SpeedChange_Button").IsClicked)
+                EditorModel.Instance.AppendMode = AppendMode.SpeedChange;
+
+            if(_Window.GetItemWithAttr<GUIImageButton>("TempoChange_Button").IsClicked)
+                EditorModel.Instance.AppendMode = AppendMode.TempoChange;
+
+            if(_Window.GetItemWithAttr<GUIImageButton>("MeasureChange_Button").IsClicked)
+                EditorModel.Instance.AppendMode = AppendMode.MeasureChange;
+            
+            EditorModel.Instance.DefaultLength
+                = _Window.GetItemWithAttr<GUIInputFloat>("Length").Values[0];
+
+            EditorModel.Instance.DefaultAfterSpeed
+                = _Window.GetItemWithAttr<GUIInputFloat>("AfterSpeed").Values[0];
+
+            EditorModel.Instance.DefaultAfterTempo
+                = _Window.GetItemWithAttr<GUIInputFloat>("AfterTempo").Values[0];
+
+            EditorModel.Instance.DefaultAfterMeasure
+                = _Window.GetItemWithAttr<GUIInputInt>("AfterMeasure").Values[0];
         }
 
         private void OnSelect()

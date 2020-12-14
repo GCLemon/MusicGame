@@ -52,17 +52,17 @@ namespace MusicGame.Editor
                                 break;
                             case AppendMode.SpeedChange:
                                 _PlottingObject = new Core.SpeedChange();
-                                ((Core.SpeedChange)_PlottingObject).AfterSpeed = EditorModel.Instance.DefaultNextSpeed;
+                                ((Core.SpeedChange)_PlottingObject).AfterSpeed = EditorModel.Instance.DefaultAfterSpeed;
                                 EditorModel.Instance.Score.Effects.Add((Core.SpeedChange)_PlottingObject);
                                 break;
                             case AppendMode.TempoChange:
                                 _PlottingObject = new Core.TempoChange();
-                                ((Core.TempoChange)_PlottingObject).AfterTempo = EditorModel.Instance.DefaultNextTempo;
+                                ((Core.TempoChange)_PlottingObject).AfterTempo = EditorModel.Instance.DefaultAfterTempo;
                                 EditorModel.Instance.Score.Effects.Add((Core.TempoChange)_PlottingObject);
                                 break;
                             case AppendMode.MeasureChange:
                                 _PlottingObject = new Core.MeasureChange();
-                                ((Core.MeasureChange)_PlottingObject).AfterMeasure = EditorModel.Instance.DefaultNextMeasure;
+                                ((Core.MeasureChange)_PlottingObject).AfterMeasure = EditorModel.Instance.DefaultAfterMeasure;
                                 EditorModel.Instance.Score.Effects.Add((Core.MeasureChange)_PlottingObject);
                                 break;
                         }
@@ -84,29 +84,28 @@ namespace MusicGame.Editor
                         {
                             ((Core.Note)_PlottingObject).Timing = timing;
 
-                            switch(((Core.Note)_PlottingObject).NoteType)
+                            if(((Core.Note)_PlottingObject).NoteType == Core.NoteType.TapNote)
                             {
-                                case Core.NoteType.TapNote:
-                                    if(102 <= dragPos.X && dragPos.X <= 162)
-                                        ((Core.TapNote)_PlottingObject).LaneType = Core.LaneType.Blue;
-                                    if(164 <= dragPos.X && dragPos.X <= 224)
-                                        ((Core.TapNote)_PlottingObject).LaneType = Core.LaneType.Green;
-                                    if(226 <= dragPos.X && dragPos.X <= 286)
-                                        ((Core.TapNote)_PlottingObject).LaneType = Core.LaneType.Yellow;
-                                    if(288 <= dragPos.X && dragPos.X <= 348)
-                                        ((Core.TapNote)_PlottingObject).LaneType = Core.LaneType.Red;
-                                    break;
+                                if(102 <= dragPos.X && dragPos.X <= 162)
+                                    ((Core.TapNote)_PlottingObject).LaneType = Core.LaneType.Blue;
+                                if(164 <= dragPos.X && dragPos.X <= 224)
+                                    ((Core.TapNote)_PlottingObject).LaneType = Core.LaneType.Green;
+                                if(226 <= dragPos.X && dragPos.X <= 286)
+                                    ((Core.TapNote)_PlottingObject).LaneType = Core.LaneType.Yellow;
+                                if(288 <= dragPos.X && dragPos.X <= 348)
+                                    ((Core.TapNote)_PlottingObject).LaneType = Core.LaneType.Red;
+                            }
 
-                                case Core.NoteType.HoldNote:
-                                    if(102 <= dragPos.X && dragPos.X <= 162)
-                                        ((Core.HoldNote)_PlottingObject).LaneType = Core.LaneType.Blue;
-                                    if(164 <= dragPos.X && dragPos.X <= 224)
-                                        ((Core.HoldNote)_PlottingObject).LaneType = Core.LaneType.Green;
-                                    if(226 <= dragPos.X && dragPos.X <= 286)
-                                        ((Core.HoldNote)_PlottingObject).LaneType = Core.LaneType.Yellow;
-                                    if(288 <= dragPos.X && dragPos.X <= 348)
-                                        ((Core.HoldNote)_PlottingObject).LaneType = Core.LaneType.Red;
-                                    break;
+                            if(((Core.Note)_PlottingObject).NoteType == Core.NoteType.HoldNote)
+                            {
+                                if(102 <= dragPos.X && dragPos.X <= 162)
+                                    ((Core.HoldNote)_PlottingObject).LaneType = Core.LaneType.Blue;
+                                if(164 <= dragPos.X && dragPos.X <= 224)
+                                    ((Core.HoldNote)_PlottingObject).LaneType = Core.LaneType.Green;
+                                if(226 <= dragPos.X && dragPos.X <= 286)
+                                    ((Core.HoldNote)_PlottingObject).LaneType = Core.LaneType.Yellow;
+                                if(288 <= dragPos.X && dragPos.X <= 348)
+                                    ((Core.HoldNote)_PlottingObject).LaneType = Core.LaneType.Red;
                             }
                         }
                         else if(_PlottingObject is Core.Effect)

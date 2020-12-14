@@ -74,7 +74,7 @@ namespace MusicGame.Editor
 
             Position = position;
 
-            float length = (float)(((Core.SlideNote)Note).Length);
+            float length = (float)(((Core.HoldNote)Note).Length);
             _EndObject.Position = new Vector2F(0, -40 * length);
 
             _HoldObject.RectangleSize = new Vector2F(58, 40 * length - 4);
